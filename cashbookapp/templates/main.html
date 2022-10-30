@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homework.css' %}">
+    <title>메인페이지</title>
+</head>
+
+<body>
+    {% if user.is_active %} 
+    <p>Hello, {{user}} | <a href="{% url 'mypage' %}">Mypage</a> | <a href="{% url 'logout' %}">Logout</a></p>
+{% else %} 
+    <p><a href="{% url 'signup' %}">Signup</a> | <a href="{% url 'login' %}">Login</a></p>
+{% endif %}
+
+<p><a href="{% url 'write' %}">Write</a></p>
+<p><a href="{% url 'read' %}">Read</a></p>
+    
+    <div id="slideShow">
+        <ul class="slides">
+            <li><img class="box_size" src="{% static 'img/group1.png' %}" alt=""></li>
+            <li><img class="box_size" src="{% static 'img/group2.jpg' %}" alt=""></li>
+            <li><img class="box_size" src="{% static 'img/group3.png' %}" alt=""></li>
+            <li><img class="box_size" src="{% static 'img/group4.png' %}" alt=""></li>
+        </ul>
+        <p class="controller">
+            <span class="prev">&lang;</span>
+            <span class="next">&rang;</span>
+        </p>
+        <h4>LIKELION</h4>
+    </div>
+    <div class="header" id="content1"></div>
+    <div class="container">
+        <div class="content">
+            <div class="big">
+                <h1>멋쟁이 사자처럼 10기</h1>
+                <div class="lion">
+                    <div class="lion_box">
+                        <img class="lion_img" src="{% static 'img/lion.jpg' %}">
+                        <b>&lt;멋쟁이 사자처럼 10기 운영진&gt;</b>
+                        <div class="lion_name">
+                            <p>김예지, 강규빈, 강민정, 김수진,</p>
+                            <p>김신아, 김은혜, 조세은, 주영빈</p>
+                        </div>
+                    </div>
+                </div>
+                <img class="group" src="{% static 'img/hakerton.jpg' %}">
+                <div class="baby">
+                    <div class="baby_box">
+                        <img class="baby_img" src="{% static 'img/baby.jpg' %}">
+                        <b>&lt;멋쟁이 사자처럼 10기 아기사자&gt;</b>
+                        <div class="baby_name">
+                            <p>경명규, 김예은, 김효중, 박세은, 이나현,</p>
+                            <p>이윤아, 이은지, 임민지, 전지윤, 전천우,</p>
+                            <p>정재완, 최명환, 최재훈</p>
+                        </div>
+                    </div>
+                </div>
+                <img class="group2" src="{% static 'img/hakerton.jpg' %}">
+                <img class="logo" id="content2" src="{% static 'img/logo.png' %}">
+                <img class="logo2" id="content3" src="{% static 'img/logo2.png' %}">
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul id="top">
+                <li><a href="#content1">동아리 멤버로 가기🏃</a></li>
+                <li><a href="#content2">동아리 로고로 가기🦁</a></li>
+                <li><a href="#content3">하단으로 가기🔽</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+<footer>Copyright&copy; 성공회대학교 멋쟁이사자처럼 10기</footer>
+
+</html>

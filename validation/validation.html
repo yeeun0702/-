@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="validaion.css">
+    <title>회원가입 유효성 검사</title>
+</head>
+<body>
+    <h1>회원가입 유효성 검사</h1>
+    <form>
+        <fieldset>
+            <label>이름</label>
+            <input type="text">
+        </fieldset>
+        <fieldset>
+            <label>생년월일</label>
+            <input type="text" id="birthday">
+            <div class="style1">* 생년월일은 주민번호 앞 자리(8자리) 형식으로 입력하세요 *</div>
+            <div class="fail-message hide">주민번호 앞 자리(8자리)를 입력해 주세요</div>
+        </fieldset>
+        <fieldset>
+            <label>아이디(4자 이상)</label>
+            <input type="text" id="username">
+            <div class="style1">* 아이디는 4자리 이상으로 입력하세요 *</div>
+            <div class="failure-message hide">아이디는 네 글자 이상으로 입력해 주세요</div>
+            <div class="success-message hide">사용할 수 있는 아이디입니다.</div>
+        </fieldset>
+        <fieldset>
+            <label>비밀번호</label>
+            <input type="password" id="password">
+            <div class="style0">* 비밀번호는 문자, 숫자, 특수문자로 구성하여 입력하세요 *</div>
+        </fieldset>
+        <fieldset>
+            <label>비밀번호 확인</label>
+            <input type="password" id="password-retype">
+            <div class="mismatch-message hide">두 비밀번호가 일치하지 않습니다</div>
+            <div class="match-message hide">두 비밀번호가 일치합니다</div>
+        </fieldset>
+        <fieldset>
+            <label>전화번호</label>
+            <input type="text" id="phonenumber">
+            <div class="style1">* 전화번호는 "-"를 제외한 11자리 숫자만 입력하세요 *</div>
+            <div class="misnumber-message hide">숫자를 입력해 주세요</div>
+            <div class="overnumber-message hide">11자리 숫자를 입력해 주세요</div>
+        </fieldset>
+
+        <fieldset>
+            <button id="joinbutton">회원가입</button>
+        </fieldset>
+    </form>
+    <script src="validation.js"></script>
+</body>
+</html>

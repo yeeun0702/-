@@ -1,0 +1,210 @@
+@font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'IM_Hyemin-Bold';
+    background-color: #ff9b7a;
+}
+
+h1 {
+    width: 50%;
+    text-align: center;
+    font-size: 40px;
+    padding: 20px 0;
+    margin: 10px auto;
+    position: sticky;
+    top: 0;
+    border-radius: 10px;
+    background: #eeb3a3;
+    z-index: 1;
+}
+
+b {
+    margin: auto;
+}
+
+.lion_img,
+.baby_img {
+    width: 95%;
+    height: 180px;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+}
+
+.group {
+    width: 60%;
+    height: 810px;
+    display: inline-block;
+    border-radius: 10px;
+    height: 400px;
+}
+
+.group2 {
+    width: 60%;
+    height: 810px;
+    border-radius: 10px;
+    float: left;
+    height: 400px;
+}
+
+.logo {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.logo2 {
+    display: block;
+    margin: auto;
+}
+
+.lion,
+.baby {
+    width: 40%;
+    height: 400px;
+    text-align: center;
+    background-color: #eeb3a3;
+    border-radius: 10px;
+}
+
+.lion {
+    float: left;
+}
+
+.baby {
+    display: inline-block;
+}
+
+.lion_box,
+.baby_box {
+    position: relative;
+    top: 9px;
+}
+
+.lion_img {
+    margin-bottom: 30px;
+}
+
+.lion_name,
+.baby_name {
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+.lion_name {
+    margin-top: 30px;
+}
+
+.container {
+    display: flex;
+}
+
+.content {
+    width: 80%;
+    height: 910px;
+}
+
+.sidebar {
+    width: 20%;
+    height: 200px;
+    position: sticky;
+    top: 0;
+    background: #f38aa5;
+}
+
+footer {
+    bottom: 15px;
+    position: fixed;
+    right: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow {
+    width: 500px;
+    height: 300px;
+    position: relative;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.slides {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2500px;
+    transition: left 0.5s ease-out;
+    /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해
+  첫번째 슬라이드만 margin-left조정 */
+.slides li:first-child {
+    margin-left: 100px;
+}
+
+.box_size {
+    width: 300px;
+    height: 300px;
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides li:not(:last-child) {
+    float: left;
+    margin-right: 100px;
+}
+
+.slides li {
+    float: left;
+}
+
+.controller span {
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+/* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller span:hover {
+    background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev {
+    left: 10px;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 
+  이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+    transform: translateX(-10px);
+}
+
+.next {
+    right: 10px;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 
+  이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+    transform: translateX(10px);
+}

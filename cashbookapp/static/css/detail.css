@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body { background-color: #ff9b7a; }
+
+* {
+    box-sizing: border-box; 
+    font-family: 'IM_Hyemin-Bold';
+}
+a {text-decoration: none;}
+.modal-back {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.modal-page {
+    background-color: #ffb39a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30rem;
+    height: 25rem;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.btn-close {
+    position:absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.btn-submit {
+    background-color: #ff8055;
+    color: #fff;
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    display: block;
+    margin: 1em auto;
+    cursor: pointer;
+    border: none;
+}
+
+.modal-back.active {
+    display: block;
+}
+
+input:focus,
+textarea:focus {
+    background-color: #F9FFFF;
+}
+
+input[type=text] {
+    width: 15rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+textarea {
+    width: 15rem;
+    height: 5rem;
+    margin-top: 1rem;
+}
+#modal-btn {
+    background-color: #ff9b7a;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#modal-close {
+    text-decoration: none;
+    border: none;
+    color: black;
+}
+#modal-close:hover {
+    color: #ff8055;
+}
+
+#id_text {
+    background-color: #ffb39a;
+    border: none;
+    border-bottom: 1px solid rgb(49, 49, 49);
+    padding: 1rem 0;
+}

@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+    <title>나만의 가계부 만들기</title>
+</head>
+<body>
+    <div class="col-lg-10">
+        <h2>Detail</h2>
+        <hr><br><br>
+        <h3>제목: {{cashbooks.title}}</h3>
+        <p>작성일: {{cashbooks.pub_date}}</p>
+        <p>지출내역:{{cashbooks.content}}</p>
+        <p>세부사항:{{cashbooks.detail}}</p>
+        {% if cashbooks.image %}
+        <img src="{{ cashbooks.image.url }}" width="250" height="250" alt="image">
+        {% endif %}
+        <br>
+
+        <a href="{% url 'edit' cashbooks.id %}">수정하기</a>
+        <a href="{% url 'delete' cashbooks.id %}">삭제하기</a>
+
+        <br>
+        <br>
+        {% for comment in cashbooks.comments.all %}
+        {% if comment.author == cashbooks.author %}
+        작성자 : {{ comment.text }}
+        {% else %}
+        <p>{{ comment.author }} : {{ comment.text }}
+        {% endif %}
+        {% if comment.author == request.user %}
+        <a href="{% url 'update_comment' cashbooks.id comment.id %}">수정</a>
+        <a href="{% url 'delete_comment' cashbooks.id comment.id %}">삭제</a>
+        {% endif %}
+        <br>
+        {% endfor %}
+        <button id="modal-btn">댓글 작성</button>
+        <div id="modal-b" class="modal-back">
+            <div class="modal-page">
+                <a class="btn-close" id="modal-close" href="">닫기</a>
+                <form method="POST" action="{% url 'detail' cashbooks.id %}">
+                    {% csrf_token %}
+                    <p>{{ form.as_p}}</p>
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/detail.js' %}"></script>
+</body>
+</html>

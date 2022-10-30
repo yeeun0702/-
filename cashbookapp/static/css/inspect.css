@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'IM_Hyemin-Bold';
+    background-color: #ff9b7a;
+}
+
+.hide {
+    display: none;
+}
+
+.failure-message,
+.mismatch-message,
+.misnumber-message {
+    color: red;
+}
+
+.success-message,
+.math-message {
+    color: blue;
+}
+
+.style0,
+.style1 {
+    color: gray;
+}
+
+.form_label {
+    color: black;
+}
+
+.form_field {
+    border: 5px solid #ff71c8;
+    display: block;
+    margin: 0 auto;
+    background-color: #ff9b7a;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}
