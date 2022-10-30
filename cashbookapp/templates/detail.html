@@ -39,6 +39,7 @@
         {% endif %}
         <br>
         {% endfor %}
+        <br>
         <button id="modal-btn">댓글 작성</button>
         <div id="modal-b" class="modal-back">
             <div class="modal-page">
@@ -46,7 +47,7 @@
                 <form method="POST" action="{% url 'detail' cashbooks.id %}">
                     {% csrf_token %}
                     <p>{{ form.as_p}}</p>
-                    <input type="submit" value="submit">
+                    <input class="btn-submit" type="submit" value="submit">
                 </form>
             </div>
         </div>
