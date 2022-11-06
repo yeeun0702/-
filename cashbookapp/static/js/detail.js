@@ -16,3 +16,17 @@ function hideModal() {
 
 modalBtn.addEventListener('click', activeModal)
 modalClose.addEventListener('click', hideModal)
+
+// 좋아요 버튼
+const heart = document.querySelector(".heart");
+const animationHeart = document.querySelector(".animation-heart");
+
+heart.addEventListener('click', () => {
+    animationHeart.classList.add('animation');
+    heart.classList.add('fill-colot');
+})
+
+animationHeart.addEventListener('click', () => {
+    animationHeart.classList.remove('animation');
+    heart.classList.remove('fill-color');
+})

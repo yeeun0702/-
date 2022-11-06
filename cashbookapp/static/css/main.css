@@ -22,9 +22,32 @@ h1 {
     background: #eeb3a3;
     z-index: 1;
 }
+h1:hover {
+    color:#ff9b7a;
+}
+
+h2 {
+    width: 40%;
+    text-align: center;
+    font-size: 40px;
+    padding: 10px 0;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: #fea689;
+    z-index: 1;
+
+}
 
 b {
     margin: auto;
+}
+
+.move {
+    text-decoration: none;
+    color: rgb(49, 48, 48);
+}
+.move:hover {
+    color:aqua;
 }
 
 .lion_img,
@@ -114,7 +137,9 @@ b {
     height: 200px;
     position: sticky;
     top: 0;
-    background: #f38aa5;
+    background: #eda5b7;
+    text-align: center;
+    padding-top: 4rem;
 }
 
 footer {
@@ -182,6 +207,7 @@ li {
     top: 50%;
     font-size: 1.3em;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */

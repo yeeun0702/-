@@ -18,8 +18,10 @@ class Cashbook(models.Model):
     detail = models.TextField()
     #pub_date = models.DateTimeField('date published', default=datetime.datetime.now, editable=False)
     image = models.ImageField(upload_to = 'images/', blank =True, default='')
-    likes = models.PositiveIntegerField(default=0, verbose_name='추천수')
+    post_like = models.ManyToManyField(CustomUser, related_name='like_user', blank=True)
+    like_count =models.PositiveIntegerField(default=0)
     clicks = models.PositiveIntegerField(default=0, verbose_name='조회수') 
+    hashtags = models.ManyToManyField('Hashtag', blank=True)
 
     def __str__(self):
         return self.title
@@ -46,3 +48,8 @@ class Comment(models.Model):
     author = models.ForeignKey('account.CustomUser', on_delete=models.CASCADE, blank = True)
     text = models.CharField(max_length=50)
 
+class Hashtag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

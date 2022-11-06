@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
     <title>나만의 가계부 만들기</title>
+ 
 </head>
 <body>
     <div class="col-lg-10">
@@ -40,6 +42,7 @@
         <br>
         {% endfor %}
         <br>
+        <br>
         <button id="modal-btn">댓글 작성</button>
         <div id="modal-b" class="modal-back">
             <div class="modal-page">
@@ -52,6 +55,21 @@
             </div>
         </div>
     </div>
+    <br>
+    {% for hashtag in cashbooks.hashtags.all %}
+    <p>해시태그 : <a href="{% url 'hashtag_detail' hashtag.id hashtag.id %}">#{{ hashtag.name }} </a><a href="{% url 'hashtag_delete' cashbooks.id hashtag.id %}">삭제</a></p>
+{% endfor %}
+<br>
+
+
+<div class="heart">
+    <p class="like"><a href="{% url 'likes' cashbooks.id %}"></p></a>
+</div>
+<div class="animation-heart"></div>
+<label class=like-count>{{ cashbooks.like_count }}</label>
+</form>
+</div>
     <script src="{% static 'js/detail.js' %}"></script>
 </body>
+
 </html>

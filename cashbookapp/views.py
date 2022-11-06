@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CashbookForm, CommentForm
+from .forms import CashbookForm, CommentForm, HashtagForm
 from django.utils import timezone
-from .models import Cashbook, Comment
+from .models import Cashbook, Comment, Hashtag
+from account.models import CustomUser
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -14,28 +15,29 @@ def main(request):
  
 
 @login_message_required
-def write(request):
-    context = {}
+def write(request, cashbook = None):
     if request.method == 'POST':
-        form = CashbookForm(request.POST, request.FILES)
+        form = CashbookForm(request.POST, request.FILES, instance = cashbook)
         if form.is_valid():
-            form = form.save(commit=False)
-            form.created_at = timezone.now()
-            form.author = request.user
-            form.save()
-            return redirect('detail',form.id)
-
+            author = request.user
+            cashbook = form.save(commit = False)
+            cashbook.author = request.user
+            cashbook.save()
+            content = request.POST.get('content')
+            content_list = content.split(' ')
+            form.save_m2m()
+            for c in content_list:
+                if '#' in c:
+                    hashtag = Hashtag()
+                    hashtag.hashtag_content = c
+                    cashbook_ = Cashbook.objects.get(id = cashbook.id)
+                    cashbook_.tagging.add(hashtag)
+            return redirect('/')
         else:
-            context = {
-                'form':form,
-            }
-            return render(request, 'write.html', context)
-
-        
+            return redirect('write', {'author':author})
     else:
-        form = CashbookForm
+        form = CashbookForm(instance = cashbook)
         return render(request, 'write.html', {'form':form})
-        
 
 def read(request):
     cashbooks = Cashbook.objects.all()
@@ -93,3 +95,53 @@ def delete_comment(request, id, com_id):
     comment = get_object_or_404(Comment, id=com_id)
     comment.delete()
     return redirect('detail',id)
+
+
+def hashtag(request, hashtag = None):
+    if request.method == 'POST':
+        form = HashtagForm(request.POST, instance = hashtag)
+        if form.is_valid():
+            hashtag = form.save(commit = False)
+            if Hashtag.objects.filter(name=form.cleaned_data['name']):
+                form = HashtagForm()
+                error_message = '이미 존재하는 해시태그입니다.'
+                return render(request, 'hashtag.html', {'form':form, 'error_message': error_message})
+            else:
+                hashtag.name = form.cleaned_data['name']
+                hashtag.save()
+            return redirect('read')
+    else:
+        form = HashtagForm(instance=hashtag)
+        return render(request, 'hashtag.html',{'form':form})
+
+
+def hashtag_home(request):
+    hashtags = Hashtag.objects.all()
+    return render(request, 'hashtag_home.html', {'hashtags':hashtags})
+
+def hashtag_detail(request, id, hashtag_id):
+    hashtags = get_object_or_404(Hashtag, id=id)
+    hashtag = Hashtag.objects.filter(name=hashtags)
+    hashtag_posts = Cashbook.objects.filter(hashtags__in = hashtag)
+    return render(request, 'hashtag_detail.html', {'hashtag':hashtag, 'hashtag_posts':hashtag_posts})
+   
+def hashtag_delete(request, id, hashtag_id):
+    cashbook = get_object_or_404(Cashbook, id=id)
+    hashtag = get_object_or_404(Hashtag, id=hashtag_id)
+    cashbook.hashtags.remove(hashtag)
+    if hashtag.cashbook_set.count() == 0:
+        hashtag.delete()
+    return redirect('detail', id=id)
+
+def likes(request, id):
+    like_b = get_object_or_404(Cashbook, id=id)
+    if request.user in like_b.post_like.all():
+        like_b.post_like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.post_like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail', like_b.id)
+
