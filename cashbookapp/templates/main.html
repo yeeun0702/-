@@ -10,18 +10,39 @@
 </head>
 
 <body>
+    <main class="container">
+        <div class="toggle-container">
+            <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
+                <img src="https://cdn-icons-png.flaticon.com/512/176/176399.png" alt="sun">
+            </button>
+            <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
+                <img src="https://www.pngplay.com/wp-content/uploads/6/Black-Crescent-Moon-PNG-Clipart-Background.png"
+                    alt="moon">
+            </button>
+        </div>
+    </main>
     <h2 id="clock">00:00:00</h2>
-    {% if user.is_active %} 
+    {% if user.is_active %}
     <p>Hello, {{user}} | <a href="{% url 'mypage' %}">Mypage</a> | <a href="{% url 'logout' %}">Logout</a></p>
-{% else %} 
+    {% else %}
     <p><a href="{% url 'signup' %}">Signup</a> | <a href="{% url 'login' %}">Login</a></p>
-{% endif %}
+    {% endif %}
 
-<p><a href="{% url 'write' %}">Write</a></p>
-<p><a href="{% url 'read' %}">Read</a></p>
-<p><a href="{% url 'hashtag' %}">hashtag</a></p>
-<p><a href="{% url 'hashtag_home' %}">hashtaghome</a></p>
-    
+    <p><a href="{% url 'write' %}">Write</a></p>
+    <p><a href="{% url 'read' %}">Read</a></p>
+    <p><a href="{% url 'hashtag' %}">hashtag</a></p>
+    <p><a href="{% url 'hashtag_home' %}">hashtaghome</a></p>
+
+
+    <a href="{% url 'hashtag' %}">해시태그 만들기</a>
+    <br>
+
+    <p>
+    <form method="GET" action="{% url 'search' %}">검색기능</p>
+        {% csrf_token %}
+        <input name="search">
+        <button type="submit">검색</button>
+    </form>
     <div id="slideShow">
         <ul class="slides">
             <li><img class="box_size" src="{% static 'img/group1.png' %}" alt=""></li>
@@ -75,6 +96,8 @@
             </ul>
         </div>
     </div>
+
+
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 <footer>Copyright&copy; 성공회대학교 멋쟁이사자처럼 10기</footer>

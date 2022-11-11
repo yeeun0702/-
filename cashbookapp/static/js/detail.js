@@ -23,7 +23,7 @@ const animationHeart = document.querySelector(".animation-heart");
 
 heart.addEventListener('click', () => {
     animationHeart.classList.add('animation');
-    heart.classList.add('fill-colot');
+    heart.classList.add('fill-color');
 })
 
 animationHeart.addEventListener('click', () => {

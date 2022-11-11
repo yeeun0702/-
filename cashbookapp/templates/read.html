@@ -11,10 +11,19 @@
 </head>
 <body>
     <h2>Read</h2>
-    <form method ="POST">
+    <form method ="GET">
+        <select name="sort" id="sort">
+            <option value="date" id="date">최신순</option>
+            <option value="like_count" id="like_count">좋아요순</option>
+        </select>
+        <button type="submit">정렬</button>
+    </form>
+
+    
         {% for cashbooks in cashbooks.all %}
         <h3>제목 : <a href="{% url 'detail' cashbooks.id %}" cashbooks.id>{{cashbooks.title}}</a></h3> 
 
         {% endfor %}
+
 </body>
 </html>

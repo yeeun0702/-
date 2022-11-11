@@ -16,7 +16,7 @@
         <h2>Detail</h2>
         <hr><br><br>
         <h3>제목: {{cashbooks.title}}</h3>
-        <p>작성일: {{cashbooks.pub_date}}</p>
+        <p>작성일: {{cashbooks.date}}</p>
         <p>지출내역:{{cashbooks.content}}</p>
         <p>세부사항:{{cashbooks.detail}}</p>
         {% if cashbooks.image %}
@@ -62,13 +62,17 @@
 <br>
 
 
-<div class="heart">
-    <p class="like"><a href="{% url 'likes' cashbooks.id %}"></p></a>
-</div>
-<div class="animation-heart"></div>
-<label class=like-count>{{ cashbooks.like_count }}</label>
-</form>
-</div>
+
+<a href="{% url 'like' cashbooks.id %}">
+    <div class="heart-box">
+    <div class="heart">
+        <p class="like"></p>
+    </div>
+    <div class="animation-heart"></div>
+    </div>
+    </a>
+    <br><br>
+    {{ cashbooks.like_count }} 
     <script src="{% static 'js/detail.js' %}"></script>
 </body>
 

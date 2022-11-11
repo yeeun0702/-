@@ -16,7 +16,7 @@ class Cashbook(models.Model):
     content = models.TextField()
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='author')
     detail = models.TextField()
-    #pub_date = models.DateTimeField('date published', default=datetime.datetime.now, editable=False)
+    date = models.DateTimeField('data published', default=datetime.now, editable=False)
     image = models.ImageField(upload_to = 'images/', blank =True, default='')
     post_like = models.ManyToManyField(CustomUser, related_name='like_user', blank=True)
     like_count =models.PositiveIntegerField(default=0)

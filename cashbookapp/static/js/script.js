@@ -48,3 +48,7 @@ function getClock() {
 
 getClock();
 setInterval(getClock, 1000); //1초마다 함수 실행(1초마다 시간 감)
+
+// 다크모드 실행
+const setTheme = theme =>
+document.documentElement.className = theme;

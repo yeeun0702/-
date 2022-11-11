@@ -7,6 +7,8 @@ from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from account.loginmessage import *
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -40,8 +42,14 @@ def write(request, cashbook = None):
         return render(request, 'write.html', {'form':form})
 
 def read(request):
-    cashbooks = Cashbook.objects.all()
-    return render(request, 'read.html', {'cashbooks':cashbooks})
+    sort = request.GET.get('sort', '')
+    if sort == 'date':
+        cashbooks = Cashbook.objects.all().order_by('-date')
+    elif sort == 'like_count':
+        cashbooks = Cashbook.objects.all().order_by('-like_count')
+    else:
+        cashbooks = Cashbook.objects
+    return render(request, 'read.html', {'cashbooks':cashbooks, 'sort': sort})
 
 def edit(request, id):
     cashbooks = get_object_or_404(Cashbook, id=id)
@@ -133,7 +141,8 @@ def hashtag_delete(request, id, hashtag_id):
         hashtag.delete()
     return redirect('detail', id=id)
 
-def likes(request, id):
+@login_message_required
+def like(request, id):
     like_b = get_object_or_404(Cashbook, id=id)
     if request.user in like_b.post_like.all():
         like_b.post_like.remove(request.user)
@@ -144,4 +153,17 @@ def likes(request, id):
         like_b.like_count += 1
         like_b.save()
     return redirect('detail', like_b.id)
+
+
+def search(request):
+    cashbooks = Cashbook.objects.all()
+    search = request.GET.get('search', '')
+    if search:
+        cashbooks = cashbooks.filter (
+            Q(title__icontains = search) | # 제목
+            Q(content__icontains = search)  # 내용
+        ).distinct()
+        return render(request, 'search.html', {'cashbooks':cashbooks, 'search':search})
+    else:
+        return render(request, 'search.html')
 

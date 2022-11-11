@@ -76,3 +76,4 @@ def mypage_edit(request):
         return render(request, 'mypage_edit.html', {
             'form':form,
             'image':image})
+
