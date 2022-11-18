@@ -111,7 +111,8 @@ b {
 .baby_name {
     width: 90%;
     display: block;
-    margin: auto;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 .lion_name {
@@ -297,3 +298,21 @@ h1, .lion, .baby {
 .dark .theme-btn.light {
   display: block;
 }
+
+#loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -140px;
+    margin-left: -250px;
+    DISPLAY: block;
+    text-align: center;
+}
+
+#wrap {
+    display: none;
+}
+
+input {outline: none;}
+
+button {cursor: pointer;}

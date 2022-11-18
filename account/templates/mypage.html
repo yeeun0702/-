@@ -1,10 +1,23 @@
-<p><a href="{% url 'main' %}">메인</a></p>
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+    <title>mypage</title>
+</head>
+<body>
+    <p><a href="{% url 'main' %}">메인</a></p>
 
-<p>이름 : {{user.username}}</p>
-<p>나이 : {{user.age}}</p>
-{% if image %}
-<img src="{{image.url}}"><br>
-{% endif %}
-<a href="{% url 'mypage_edit' %}">프로필 이미지 수정</a>
-<a href="{% url 'update_password' %}">비밀번호 수정</a>
+    <p>이름 : {{user.username}}</p>
+    <p>나이 : {{user.age}}</p>
+    {% if image %}
+    <img src="{{image.url}}"><br>
+    {% endif %}
+    <a href="{% url 'mypage_edit' %}">프로필 이미지 수정</a>
+    <a href="{% url 'update_password' %}">비밀번호 수정</a>
+</body>
+</html>

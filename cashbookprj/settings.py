@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cashbookapp.apps.CashbookappConfig',
     'account',
+    'payment',
 ]
 
 MIDDLEWARE = [

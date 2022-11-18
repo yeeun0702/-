@@ -20,6 +20,7 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path,include
 import cashbookapp.views
+import payment.views
 import account.views
 
 urlpatterns = [
@@ -27,4 +28,7 @@ urlpatterns = [
     path('',cashbookapp.views.main, name='main'),
     path('',include('cashbookapp.urls')),
     path('',include('account.urls')),
+    path('window/',payment.views.window),
+    path('success/', payment.views.success),
+    path('fail/', payment.views.fail),
 ]

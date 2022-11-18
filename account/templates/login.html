@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         {{ form.as_p}}
-        <button type="submit">로그인</button>
+        <button class="login-btn" type="submit">로그인</button>
         <br>
         <a href="{% url 'signup' %}">회원가입</button>
     </form>

@@ -5,9 +5,34 @@
     font-style: normal;
 }
 
-body {
+* {
     font-family: 'IM_Hyemin-Bold';
     background-color: #ff9b7a;
+}
+
+body {
     margin-top: 1rem;
     margin-left: 1rem;
+}
+
+#id_name {
+    outline: none;
+    background-color: #ff9b7a;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.h-btn {
+    background-color: #ff9b7a;
+    border-radius: 10px;
+    border: 1px solid #101010;
+
+    margin-top: 1rem;
+    padding: 5px 20px;
+
+    cursor: pointer;
+}
+.h-btn:hover {
+    color:#ff9b7a;
+    background-color: #101010;
 }

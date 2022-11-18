@@ -1,9 +1,21 @@
+{% load static %}
 
-
-<form method="POST" action="{% url 'mypage_edit' %}" enctype="multipart/form-data">
-    {% csrf_token %} 
-    <p>이름 : {{user.username}}</p>
-    <img src="{{image.url}}">
-    {{form.as_p}}
-    <button type="submit">수정</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mypage_edit.css' %}">
+    <title>mypage_edit</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'mypage_edit' %}" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <p>이름 : {{user.username}}</p>
+        <img src="{{image.url}}">
+        {{form.as_p}}
+        <button class="e-btn" type="submit">수정</button>
+    </form>
+</body>
+</html>
